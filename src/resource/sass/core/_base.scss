@@ -1,0 +1,71 @@
+//
+// Core: Base
+//
+
+// Links
+$link-color: $color-main-theme;
+$link-color-hover: lighten($link-color, 20%);
+
+// Typography
+$font-family: 'Ubuntu', sans-serif;
+
+$font-default-color: #2c3e50;
+
+$font-size-base: 1.6;
+$font-size-small: ceil(($font-size-base * 0.85)) !default;
+$font-size-large: ceil(($font-size-base * 1.25)) !default;
+
+$font-size-h1: floor(($font-size-base * 2.6));
+$font-size-h2: floor(($font-size-base * 2.15));
+$font-size-h3: ceil(($font-size-base * 1.7));
+$font-size-h4: ceil(($font-size-base * 1.25));
+$font-size-h5: $font-size-base;
+$font-size-h6: ceil(($font-size-base * 0.85));
+
+body {
+  font-family: $font-family;
+  @include font-size($font-size-base);
+  color: $font-default-color;
+  background: $color-theme-background;
+}
+
+h1 {
+  @include font-size($font-size-h1);
+}
+h2 {
+  @include font-size($font-size-h2);
+}
+h3 {
+  @include font-size($font-size-h3);
+}
+h4 {
+  @include font-size($font-size-h4);
+}
+h5 {
+  @include font-size($font-size-h5);
+}
+h6 {
+  @include font-size($font-size-h6);
+}
+
+a {
+  color: $link-color;
+
+  &:hover, &:focus {
+    color: $link-color-hover;
+  }
+}
+
+p {
+  @include rem(margin, 0 0 20px);
+}
+
+::-moz-selection { /* Code for Firefox */
+  color: #ffffff;
+  background: $color-main-theme;
+}
+
+::selection {
+  color: #ffffff;
+  background: $color-main-theme;
+}

@@ -1,0 +1,86 @@
+//
+// Parallax
+//
+$parallax-content-color: darken(#ffffff, 10%);
+.parallax {
+  color: $parallax-content-color;
+  background-size: cover;
+
+  h1 {
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  .home-info {
+    text-align: center;
+    @include rem(padding, 100px 20px);
+
+    h1 {
+      text-transform: uppercase;
+      @include rem(font-size, 60px);
+    }
+
+    span {
+      @include rem(font-size, 20px);
+    }
+
+    .socials {
+      @include rem(font-size, 40px);
+      @include rem(padding-right, 100px);
+      li {
+        display: inline;
+        @include rem(padding-left, 40px);
+        a {
+          color: #fff;
+          &:hover, &:focus, &:active {
+            color: #dddddd;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+  &.parallax-sm-bar {
+    @include rem(height, 300px);
+  }
+
+  .border {
+    display: block;
+    @include rem(margin, 40px auto);
+    @include rem(width, 60px);
+    @include rem(height, 2px);
+    background-color: $parallax-content-color;
+  }
+
+  .parallax-overlay {
+    background-image: url(../images/pattern.png);
+    @include rem(padding, 60px 0);
+    height: 100%;
+  }
+
+  &.parallax-header {
+    @include rem(margin-bottom, 80px);
+  }
+
+  &.parallax-footer {
+    @include rem(margin-top, 80px);
+  }
+}
+
+.parallax-forest {
+  background-image: url(../images/woods.jpg);
+}
+
+.parallax-map-footer {
+  height: 400px;
+  @include rem(height, 300px);
+  address {
+    color: #000000;
+  }
+}
+
+.parallax-road {
+  background-image: url(../images/road.jpg);
+  background-position: bottom;
+}

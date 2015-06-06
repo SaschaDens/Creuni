@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html ng-app="app" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Creuni</title>
+    <meta name="description" content="Creatives get together">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="Creuni">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://creuni.com">
+    <meta property="og:image" content="http://creuni.com/resource/images/logo.png">
+    <meta property="og:description" content="Creatives get together op 20 mei. We verwelkomen alle jonge creatievelingen met een commerciële touch die houden van een uitdaging. Vul je avond met communicatie, spanning en amusement.">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="resource/css/app.css?ver=5"/>
+</head>
+<body ng-controller="mainController as vm">
+<div id="home"></div>
+<div class="parallax parallax-header-home">
+    <div class="parallax-overlay">
+        <div class="container">
+            <div class="home-info">
+                <img src="resource/images/logo.png" alt="Creuni"/>
+                <ul class="socials">
+                    <li>
+                        <a href="https://www.facebook.com/CreUniAwards">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/CreUni2015">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/company/creuni?trk=company_logo">
+                            <i class="fa fa-linkedin-square"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://instagram.com/creuni2015">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav id="main-navbar-header" class="navbar navbar-custom navbar-static-top">
+    <div class="nav-container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-header"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#home">
+                <img src="resource/images/logo-small.png" alt="Creuni" class="img-responsive"/>
+            </a>
+        </div>
+        <div id="navbar-header" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active">
+                    <a href="#foreword">Home</a>
+                </li>
+                <li>
+                    <a href="#talk-together">Talk Together</a>
+                </li>
+                <li>
+                    <a href="#award-show">Award Show</a>
+                </li>
+                <li>
+                    <a href="#jury">Jury</a>
+                </li>
+                <li>
+                    <a href="#get-together">Get Together</a>
+                </li>
+                <li>
+                    <a href="#sponsors">Sponsors</a>
+                </li>
+                <li>
+                    <a href="#team">Team</a>
+                </li>
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="content-box">
+    <section id="foreword" class="box odd">
+        <div class="container">
+            <p>CreUni. Dat is creatief en communicatief.</p>
+
+            <p>
+                Op woensdag 20 mei verwelkomen we in DE Studio alle jonge creatievelingen met een commerciële touch die houden van een uitdaging. Een panelgesprek met professionals uit de PR- en reclamewereld en een awardshow vullen jouw avond. Vanaf 18u30 openen we de deuren en om 19u00 geven we het officiële startschot van CreUni en volgt er een boeiend panelgesprek. Later op de avond vindt de awardshow plaats waar we het creatief talent in de kijker zetten.
+                Communicatie, spanning en amusement troef tijdens CreUni. Neem gratis deel aan deze unieke belevenis en breid je netwerk uit.
+            </p>
+            <h4>Kom kijken. Laat hier je gegevens achter.</h4>
+
+            <div class="formError alert alert-danger" role="alert" ng-show="vm.formAttendError">
+                Is er een error in het versturen van het formulier? Probeer opnieuw of stuur een mail naar <a href="{{'mailto:'}}{{'info'}}{{'@'}}creuni.com">{{'info'}}{{'@'}}creuni.com</a>
+            </div>
+            <div class="winner alert alert-success" role="alert" ng-show="vm.sendedAttend">
+                We hebben je bericht successvol ontvangen. Tot dan!
+            </div>
+            <div class="loading text-success" ng-show="vm.isAttendLoading">
+                <img src="resource/images/loader.gif" class="img-responsive" alt="loading">
+                <p class="text-success">De gegevens worden verstuurd</p>
+            </div>
+            <form name="attend" ng-submit="attend.$valid && vm.sendAttendMail()" novalidate ng-hide="vm.sendedAttend || vm.isAttendLoading">
+                <div class="form-group">
+                    <label for="username">Naam: (*)</label>
+                    <input ng-model="vm.attending.name" class="form-control" type="text" name="username" required/>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Aantal: (*)</label>
+                    <input ng-model="vm.attending.amount" class="form-control" type="number" name="amount" required/>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input ng-model="vm.attending.email" class="form-control" type="email" name="email"/>
+                </div>
+                <div class="form-group">
+                    <input class="form-control btn btn-success" type="submit" name="project" value="Ik kom!"/>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div class="parallax parallax-sm-bar" id="home-bar">
+        <div class="parallax-overlay"></div>
+    </div>
+
+    <section id="talk-together" class="box even">
+        <div class="container">
+            <h1>Talk Together</h1>
+
+            <p>
+                Beleef een interactieve ervaring met verschillende communicatieprofessionals die elk hun visie geven op de communicatiewereld. Eén uur, drie stellingen, jouw vragen. Dat zijn de ingrediënten voor het begin van CreUni.
+                Talk Together wordt opgesplitst in drie delen. In elk deel staat een stelling centraal waarop de communicatieprofessionals hun kijk geven. Surf naar onze
+                <a href="https://www.facebook.com/CreUniAwards">Facebookpagina</a> en geef jouw mening over deze stellingen.
+            </p>
+
+            <p>
+                Nadat de professionals hun visie hebben gegeven op de stelling is het aan jou.
+                Vuur je vragen nu al af op onze sociale netwerken waar jij een antwoord op wilt.
+            </p>
+
+            <h4 class="text-center">Deze vijf panelleden trekken de avond op gang.</h4>
+            
+            <div class="jury">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive" src="resource/images/panel/Julie_Donckers.jpg" alt="Julie Donckers"/>
+                    </div>
+                    <div class="col-md-8">
+                        <p>
+                            Julie Donckers is een ex-student van AP Hogeschool. Deze jonge dame trok erop uit naar Berlijn en heeft daar ervaring opgedaan bij het Duitse ‘Scholz & Friends’. Deze creative planner is naast founder en content manager bij WhyNotMonday ook nog eens community manager bij het digitaal productiecenter van VRT binnen het creative lab & VRT Start-up.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive" src="resource/images/panel/Nico_Goossens.jpg" alt="Nico Goossens"/>
+                    </div>
+                    <div class="col-md-8">
+                        <p>
+                            Nico Goossens is art director bij Mosquito. Daar werkte hij voor tal van grote merken, zoals Uncle Ben's, Bonduelle, Mitsubishi Motors, Brussels Airport, VDAB, Duvel, ... Voor deze merken heeft hij meegewerkt aan veel verschillende soorten campagnes: B2B, B2C, brand activation, online en offline campagnes, sensibiliseringscampagnes etc. Kortom, Nico Goossens weet hoe het moet.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive" src="resource/images/panel/Jordy_Van_Overmeire.jpg" alt="Jordy Van Overmeire"/>
+                    </div>
+                    <div class="col-md-8">
+                        <p>
+                            Jordy Van Overmeire is account executive bij Ketchum. Hij werkt voor merken als Accor, Kapaza.be, IBM, Amway en Adidas. Hij staat in voor zowel de nationale als internationale lifestyle en corporate klanten en staat in voor B2B en B2C communicatie, mediarelaties, blogger outreach, etc
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive" src="resource/images/panel/Saskia_Neirinckx.jpg" alt="Saskie Neirinckx"/>
+                    </div>
+                    <div class="col-md-8">
+                        <p>
+                            Mode, fotografie en lifestyle, Saskia Neirinckx heeft er weet van. Deze duizendpoot heeft vier jaar geleden haar eigen persbureau opgericht en heeft daarnaast al carrière gemaakt als art director voor verschillende magazines en agentschappen. She's been around for a while. Ask her anything.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive" src="resource/images/jury/Els_Raemdonck.jpg" alt="Els Raemdonck"/>
+                    </div>
+                    <div class="col-md-8">
+                        <p>
+                            Els Raemdonck, strategic director bij Happiness Brussels, kent de Belgische reclamewereld als geen ander. Logisch, als je aan de slag bent geweest bij Saatchi & Saatchi, Duval Guillaume, Famous, ... Wanneer ze niet aan de slag is bij Happiness, geeft ze les aan de Erasmus Hogeschool Brussel.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p>Zit jij liever op het podium in plaats van in het publiek? Houd dan zeker <a href="https://twitter.com/CreUni2015">Twitter</a> en <a href="https://www.facebook.com/CreUniAwards">Facebook</a> in de gaten.</p>
+            <p>Tip: volg ons op Twitter en neem live deel aan het panelgesprek.</p>
+            <div class="text-center twitter-talk">
+                <a href="https://twitter.com/CreUni2015">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="parallax parallax-sm-bar" id="talk-together-bar">
+        <div class="parallax-overlay"></div>
+    </div>
+
+    <section id="award-show" class="box odd">
+        <div class="container">
+            <h1>Award Show</h1>
+            <p>
+                Merel Van Maldergem won de gouden award en ging lopen met de Ipad mini en een jaarabonnement van Netflix. Met haar campagne voor Radio 1 overtuigde zij de vakjury. Silke Beurms en Tom Meijer veroverden de zilveren award en gingen aan de haal met een Bose QC15 Noice Cancelling headset. Het pittige duo LIECHEE vervolledigde de top 3 en won een etentje bij Te Kook ter waarde van 150EUR.
+            </p>
+            <p>
+                <img class="img-responsive" src="resource/images/winner.jpg" alt="Merel Van Maldergem winnaar"/>
+            </p>
+            <p>Dit zijn de zes kandidaten die op 20 mei het beste van zichzelf hebben gegeven.</p>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="img-responsive" src="resource/images/award/Amnesia_programma.jpg" alt="Amnesia"/>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                        Silke Beurms en Tom Meijer creëerden een nieuwe campagne voor Amnesty International. Het creatieve duo studeert Beeldende Vormgeving aan LUCA School of Arts Gent.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="img-responsive" src="resource/images/award/Watersaver_programma.jpg" alt="Watersaver"/>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                        Jonas Vanduffel is de uitvinder van de applicatie Watersaver. Deze applicatie informeert jou op een amusante manier over het waterverbruik in elke huiskamer. Jonas studeert Multimedia Technology aan Erasmushogeschool Brussel.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="img-responsive" src="resource/images/award/Radio1_programma.jpg" alt="Radio 1 - Nooit meer opnieuw"/>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                        Merel Van Maldergem studeert Beeldende Vormgeving aan LUCA School of Arts. Zij maakte een sensibiliseringscampagne voor Radio 1 naar aanleiding van het honderjarig jubileum van WOI.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="img-responsive" src="resource/images/award/Muzieknoot-_programma.jpg" alt="Muzieknoot"/>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                        Lien Sonjeau en Chelsea Maes vormen samen een pittig duo met een vleugje humor. Dat hoor je terug in hun radiospots voor Willy Naessens, swimming pools. De jongedames studeren Beeldende Vormgeving aan LUCA School of Arts Gent.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="img-responsive" src="resource/images/award/Marlon_programma.jpg" alt="Eva"/>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                        Marlon Van Mol studeert Digital Marketing aan EHSAL Management School. Hij ontwierp een gloednieuw mobiel vrijwilligersplatform voor de vegetarische organisatie EVA vzw. Hiermee wil hij de communicatie tussen de talrijke vrijwilligers verbeteren.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="img-responsive" src="resource/images/award/OnlyInAntwerp_programma.jpg" alt="only in antwerp"/>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                        Lore Neels stelt haar project 'Only in Antwerp' voor, een uitgewerkte citymarketing campagne gericht op jongeren tussen 18 en 26 jaar. De communicatiestudente van de AP Hogeschool zet hiermee de uniekheid van de stad Antwerpen in de kijker.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="parallax parallax-sm-bar" id="award-show-bar">
+        <div class="parallax-overlay"></div>
+    </div>
+
+    <section id="jury" class="box even">
+        <div class="container">
+            <h1>Jury</h1>
+
+            <p>Verbaas de jury met jouw project.</p>
+
+            <div class="jury">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive" src="resource/images/jury/Margot_Muys.jpg" alt="Margot Muys"/>
+                    </div>
+                    <div class="col-md-8">
+                        <p>
+                            Margot Muys heeft haar eigen visueel communicatiebureau 'Memo'. Na 10 jaar als brand manager in FMCG & Hospitality sector, startte ze haar eigen bedrijf. Ze werkte al voor o.a. Tomorrowland, McDonald Belgium, Cécémel en Mad Brussels.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive" src="resource/images/jury/Lucas_Bernaerts.jpg" alt="Lucas Bernaerts"/>
+                    </div>
+                    <div class="col-md-8">
+                        <p>
+                            Lucas Bernaerts studeerde in juni 2014 af aan de opleiding reclame van Luca School of Arts te Gent. Hij nam dat jaar deel aan Triple A, de voorganger van CreUni, en won met zijn campagne 'My Moment' de prijs voor beste creatieve campagne. Na stages bij LDV United en Duval Guillaume is hij nu aan de slag bij Amphion als conceptual creative.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive" src="resource/images/jury/Michiel_Sallaets.jpg" alt="Michiel Sallaets"/>
+                    </div>
+                    <div class="col-md-8">
+                        <p>
+                            Pr- en communicatiespecialist Michiel Sallaets maakte in januari de overstap van Incofin naar BinckBank, waar hij verantwoordelijk is voor het opstellen en toepassen van een geïntegreerde PR- en communicatiestrategie. Michiel is een echte kenner van het Belgische en internationale medialandschap, vooral in de financieel/technologische sector. Dit is niet verwonderlijk als je weet dat Michiel ervaring heeft opgedaan bij Hill & Knowlton en IncuFashion.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive" src="resource/images/jury/Bram_Smets.jpg" alt="Bram Smets"/>
+                    </div>
+                    <div class="col-md-8">
+                        <p>
+                            Bram Smets begon bij Saatchi & Saatchi Business Communications en kwam nadien via RCA PR Services bij Eurostar terecht. Daar werkte hij als Media Relations Manager Continental Europe en woordvoerder. Nu is hij Business Unit Director bij Ketchum, een van de grootste PR-bureaus ter wereld.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive" src="resource/images/jury/Karen_Corrigan.jpg" alt="Karen Corrigan"/>
+                    </div>
+                    <div class="col-md-8">
+                        <p>
+                            Karen Corrigan is co-founder, CEO en strategic director van Happiness Brussels. Met klanten als Eristoff, Nivea, Martini, Schweppes, Toyota, ... is het bureau een gevestigde naam in de reclamewereld. Happiness opende zelfs vestigingen in Vietnam.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="parallax parallax-sm-bar" id="jury-bar">
+        <div class="parallax-overlay"></div>
+    </div>
+
+    <section id="get-together" class="box even">
+        <div class="container">
+            <h1>Get Together</h1>
+
+            <p>Na spanning volgt ontspanning. Geniet na in een gezellige sfeer met een hapje en een drankje in de hand.</p>
+        </div>
+    </section>
+
+    <div class="parallax parallax-sm-bar" id="get-together-bar">
+        <div class="parallax-overlay"></div>
+    </div>
+
+    <section id="sponsors" class="box odd">
+        <div class="container">
+            <h1>Sponsors</h1>
+
+            <p>Bent u geïnteresseerd om via sponsoring CreUni mee uit te bouwen tot een succes?</p>
+            <p>Contacteer ons via <a href="{{'mailto:'}}{{'info'}}{{'@'}}creuni.com">{{'info'}}{{'@'}}creuni.com</a></p>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="http://www.deboerenpartners.be/">
+                        <img class="img-responsive" src="resource/images/sponsors/deboer_partners.jpg" alt="De boer"/>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://www.sogeti.be/nl/">
+                        <img class="img-responsive" src="resource/images/sponsors/Sogeti.jpg" alt="Sogeti"/>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://www.duvel.be/">
+                        <img class="img-responsive" src="resource/images/sponsors/Duvel.jpg" alt="Duvel"/>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://www.movealltheway.be/nl/home/">
+                        <img class="img-responsive" src="resource/images/sponsors/Movealltheway.jpg" alt="Movealltheway"/>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="http://www.haelwaeters.be/">
+                        <img class="img-responsive" src="resource/images/sponsors/HaelwaetersJ.jpg" alt="Haelwaeters"/>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://www.matrixnv.be/">
+                        <img class="img-responsive" src="resource/images/sponsors/Matrix_5.jpg" alt="Matrix nv"/>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://www.boa.be/">
+                        <img class="img-responsive" src="resource/images/sponsors/Boa.jpg" alt="Boa"/>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://www.frituurdemarkt.com/#!frituur-de-markt-1/c5hf">
+                        <img class="img-responsive" src="resource/images/sponsors/frituur_de_markt.jpg" alt="Matrix nv"/>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="http://www.oliviers-co.com/en">
+                        <img class="img-responsive" src="resource/images/sponsors/Oliviersco.jpg" alt="Oliviers & Co"/>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://www.hetnatuurhuis.be/">
+                        <img class="img-responsive" src="resource/images/sponsors/Natuurhuis.jpg" alt="Het Natuurhuis"/>
+                    </a>
+                </div>
+
+                <div class="col-md-3">
+                    <a href="http://www.monar.be/">
+                        <img class="img-responsive" src="resource/images/sponsors/Monar.jpg" alt="Monar"/>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://www.carrefour.eu/">
+                        <img class="img-responsive" src="resource/images/sponsors/Carrefour.jpg" alt="Carrefour"/>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="http://www.cvoprovincieantwerpen.be/">
+                        <img class="img-responsive" src="resource/images/sponsors/CVO.jpg" alt="CVO"/>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://www.coffeecollege.be/">
+                        <img class="img-responsive" src="resource/images/sponsors/CoffeeCollege.jpg" alt="Coffeecollege"/>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://mediahuis.be/">
+                        <img class="img-responsive" src="resource/images/sponsors/Mediahuis_Connect.jpg" alt="Mediahuis"/>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://www.depeuternv.be/">
+                        <img class="img-responsive" src="resource/images/sponsors/De_peuter.jpg" alt="De Peuter nv"/>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="https://www.bosebelgium.be/BE/nl/index.jsp">
+                        <img class="img-responsive" src="resource/images/sponsors/Bose.jpg" alt="Bose Belgium"/>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://www.tekook.be/">
+                        <img class="img-responsive" src="resource/images/sponsors/Te_Kook.jpg" alt="Te Kook"/>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://www.modemakers.be/nl/home">
+                        <img class="img-responsive" src="resource/images/sponsors/Modemakers.jpg" alt="Modemakers"/>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="http://www.esteelauder.be/?LOCALE=nl_BE&cm_mmc=PaidSearch-_-branded-_-Brand-_-estee%20lauder">
+                        <img class="img-responsive" src="resource/images/sponsors/Estee_Lauder.jpg" alt="Estee Lauder"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="parallax parallax-sm-bar" id="sponsors-bar">
+        <div class="parallax-overlay"></div>
+    </div>
+
+    <section id="team" class="box even">
+        <div class="container">
+            <h1>Team</h1>
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6 img-bx">
+                    <img class="img-responsive" src="resource/images/aboutus/PieterVanSchil.jpg" alt="Pieter Van Schil"/>
+                    <div class="text-content"><span>Pieter Van Schil</span></div>
+                </div>
+                <div class="col-md-3 col-sm-6 img-bx">
+                    <img class="img-responsive" src="resource/images/aboutus/BramMichaelChristiaens.jpg" alt="Bram Michaël Christiaens"/>
+                    <div class="text-content"><span>Bram Michaël Christiaens</span></div>
+                </div>
+                <div class="col-md-3 col-sm-6 img-bx">
+                    <img class="img-responsive" src="resource/images/aboutus/NatalieVanTielen.jpg" alt="Nathalie Van Thielen"/>
+                    <div class="text-content"><span>Nathalie Van Thielen</span></div>
+                </div>
+                <div class="col-md-3 col-sm-6 img-bx">
+                    <img class="img-responsive" src="resource/images/aboutus/SarahGiebens.jpg" alt="Sarah Giebens"/>
+                    <div class="text-content"><span>Sarah Giebens</span></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 img-bx">
+                    <img class="img-responsive" src="resource/images/aboutus/KarinaZharmukhambetova.jpg" alt="Karina Zharmukhambetova"/>
+                    <div class="text-content"><span>Karina Zharmukhambetova</span></div>
+                </div>
+                <div class="col-md-3 col-sm-6 img-bx">
+                    <img class="img-responsive" src="resource/images/aboutus/NenaDaems.jpg" alt="Nena Daems"/>
+                    <div class="text-content"><span>Nena Daems</span></div>
+                </div>
+                <div class="col-md-3 col-sm-6 img-bx">
+                    <img class="img-responsive" src="resource/images/aboutus/KaatSoetemans.jpg" alt="Kaat Soetemans"/>
+                    <div class="text-content"><span>Kaat Soetemans</span></div>
+                </div>
+                <div class="col-md-3 col-sm-6 img-bx">
+                    <img class="img-responsive" src="resource/images/aboutus/LienHaelwaeters.jpg" alt="Lien Haelwaeters"/>
+                    <div class="text-content"><span>Lien Haelwaeters</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="parallax parallax-sm-bar" id="team-bar">
+        <div class="parallax-overlay"></div>
+    </div>
+
+    <section id="contact" class="box odd">
+        <div class="container">
+            <h1>Contact</h1>
+
+            <p>Zit je nog met vragen? Twijfel niet en contacteer ons.</p>
+
+            <p>
+                Stuur een mailtje naar <a href="{{'mailto:'}}{{'info'}}{{'@'}}creuni.com">{{'info'}}{{'@'}}creuni.com</a> of vind ons op Facebook en Twitter.
+                Je kan ons ook altijd bereiken op het nummer 04 94 59 83 23.
+            </p>
+
+            <address>
+                <strong>DE Studio</strong><br>
+                Maarschalk Gérardstraat 4<br>
+                2000 Antwerpen<br>
+            </address>
+
+            <p>Tot dan!</p>
+        </div>
+    </section>
+</div>
+
+<footer id="page-footer" class="bottom-container">
+    <div id="contact-map" class="parallax parallax-map-footer">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2499.314382122575!2d4.404396999999988!3d51.21328400000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3f6f0a01e1575%3A0xfc24b266adc9a950!2sDe+Studio!5e0!3m2!1snl!2sbe!4v1429911468460"
+                width="100%" height="300" frameborder="0" style="border:0"></iframe>
+    </div>
+    <div class="outer-footer-wrapper">
+        <div class="move-to-top">
+            <a href="#home"><span class="glyphicon glyphicon-chevron-up"></span></a>
+        </div>
+        <div class="inner-footer-wrapper container">
+            <address>
+                <strong>De Studio</strong><br>
+                Maarschalk Gérardstraat 4<br>
+                2000 Antwerpen<br>
+            </address>
+            <p>&copy; <span>CreUni</span> - Powered by <span>AP Hogeschool</span></p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+<script src="resource/js/all.min.js"></script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-62289737-1', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>

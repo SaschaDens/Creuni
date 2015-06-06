@@ -1,0 +1,30 @@
+{
+  "name": "creuni",
+  "version": "0.0.1",
+  "description": "Schoolproject",
+  "main": "gulpfile.js",
+  "scripts": {},
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-compass": "^2.0.4",
+    "gulp-concat": "^2.5.2",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-uglify": "^1.2.0"
+  },
+  "paths": {
+    "html": "./src/**/*.html",
+    "vendorjs": [
+      "./bower_components/jquery-backstretch/jquery.backstretch.min.js"
+    ],
+    "js": [
+      "./src/resource/js/app.js"
+    ],
+    "images": [
+      "./src/resource/images/**/*"
+    ],
+    "stage": "./build/stage",
+    "build": "./build"
+  },
+  "author": "Kaat Soetemans",
+  "license": "MIT"
+}

@@ -1,0 +1,21 @@
+//
+// Variables
+//
+
+// Theme colors
+$color-main-theme: #e74c3c;
+$color-theme-background: #fff;
+$color-theme-box-even: #fff;
+$color-theme-box-odd: #353c4f;
+$color-theme-footer: #353c4f;
+$color-theme-border: lighten(#e74c3c, 10%);
+
+// Breakpoints
+$screen-sm-min: 768px;
+$screen-md-min: 992px;
+$screen-lg-min: 1200px;
+$screen-xl-min: 992px;
+
+$screen-xs-max: ($screen-sm-min - 1) !default;
+$screen-sm-max: ($screen-md-min - 1) !default;
+$screen-md-max: ($screen-lg-min - 1) !default;

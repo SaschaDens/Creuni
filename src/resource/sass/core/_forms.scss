@@ -1,0 +1,13 @@
+//
+// Forms
+//
+
+.form-control {
+  border-radius: 0;
+
+  &:focus {
+    border-color: $color-theme-border;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+}

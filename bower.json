@@ -1,0 +1,15 @@
+{
+  "name": "creuni",
+  "version": "0.0.1",
+  "description": "Schoolproject",
+  "authors": [
+    "Kaat Soetemans"
+  ],
+  "license": "MIT",
+  "homepage": "creuni.com",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "jquery-backstretch": "~2.0.4"
+  }
+}

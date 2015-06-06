@@ -1,0 +1,37 @@
+//
+// Core: Containers
+//
+
+$container-sm: 750px;
+$container-md: 990px;
+$container-lg: 1190px;
+
+//.main-container {
+//  @media (min-width: $screen-sm-min) {
+//    width: $container-sm;
+//  }
+//  @media (min-width: $screen-md-min) {
+//    width: $container-md;
+//  }
+//  @media (min-width: $screen-lg-min) {
+//    width: $container-lg;
+//  }
+//}
+
+.container {
+  @include rem(padding, 0 20px);
+
+  @media (min-width: $screen-sm-min) {
+    width: $container-sm;
+  }
+  @media (min-width: $screen-md-min) {
+    width: $container-sm;
+  }
+  @media (min-width: $screen-lg-min) {
+    width: $container-sm;
+  }
+}
+
+.standalone {
+  @include rem(margin-top, 20px);
+}
